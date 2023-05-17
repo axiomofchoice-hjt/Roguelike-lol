@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "Vector.proto";
+
+message MessageProto {
+    enum Type {
+        Undefined = 0;
+        Test = 1;
+        Move = 2;
+        Attack = 3;
+        Q = 4;
+        W = 5;
+        E = 6;
+        R = 7;
+        D = 9;
+        F = 10;
+        Stop = 11;
+        ClearEnemies = 12;
+    }
+    
+    optional Vector2Proto position = 1;
+    optional fixed64 target = 2;
+    optional Type type = 3;
+}

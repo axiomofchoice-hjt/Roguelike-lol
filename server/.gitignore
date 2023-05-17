@@ -1,0 +1,7 @@
+build/
+proto/*.cs
+proto/*.cc
+proto/*.h
+.cache/
+# study-notes
+.report/

@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+import "Vector.proto";
+
+message LimitValueProto {
+    optional float now = 1;
+    optional float max = 2;
+}
+
+message EntityProto {
+    enum EntityType {
+        Player = 0;
+        Bullet = 1;
+        KaisaQBullet = 2;
+        KaisaWBullet = 3;
+        Melee = 4;
+        Nexus = 5;
+        Satchel = 6;
+        Urgot = 7;
+        UrgotBullet = 8;
+    }
+
+    enum ActionType {
+        Undefined = 0;
+        Idle = 1;
+        Move = 2;
+        WaitAttack = 3;
+        Attack = 4;
+        Attack1 = 5;
+        KaisaQ = 6;
+        KaisaW = 7;
+        MeleeAttack = 8;
+        Death = 10;
+        KaisaE = 11;
+        KaisaR = 12;
+        Invisible = 13;
+    }
+
+    optional fixed64 id = 1;
+    optional EntityType type = 2;
+    optional ActionType action = 3;
+    optional Vector3Proto position = 4;
+    optional Vector3Proto velocity = 7;
+    optional float rotation = 5;
+    optional LimitValueProto blood = 6;
+}
+
+message WallProto {
+    optional fixed64 id = 1;
+    optional Vector2Proto p1 = 2;
+    optional Vector2Proto p2 = 3;
+    optional float height = 4;
+}
+
+message SceneProto {
+    optional fixed64 id = 1;
+    repeated EntityProto entities = 2;
+    repeated WallProto walls = 10;
+    optional float attack_radius = 3;
+    optional fixed64 world_seed = 4;
+    optional bool working = 11;
+
+    optional float Acd = 5;
+    optional float Qcd = 6;
+    optional float Wcd = 7;
+    optional float Ecd = 8;
+    optional float Rcd = 9;
+}

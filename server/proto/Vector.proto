@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message Vector2Proto {
+    optional float x = 1;
+    optional float y = 2;
+}
+
+message Vector3Proto {
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+}
