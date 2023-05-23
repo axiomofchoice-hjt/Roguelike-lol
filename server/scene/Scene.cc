@@ -132,7 +132,6 @@ void Scene::receive(SocketConn &conn, const MessageProto &msg) {
             }
         }
     } else if (msg.type() == MessageProto_Type_TestDelay) {
-        log_info("recv test_delay, id={}", id);
         SceneProto proto;
         proto.set_id(id);
         proto.set_test_delay(true);
