@@ -11,9 +11,9 @@ class SocketServer {
     uptr<boost::asio::ip::tcp::acceptor> acceptor;
     boost::asio::io_context *context;
 
-    std::function<void(u64)> connectCallback;
+    std::function<void(u64)> connect_callback;
     std::function<void(u64)> disconnect_callback;
-    std::function<void(u64, std::string)> receive_callback;
+    std::function<void(SocketConn &, std::string)> receive_callback;
     std::vector<shared<SocketConn>> conn_list;
     SocketServer();
     void start(boost::asio::io_context &ctx);

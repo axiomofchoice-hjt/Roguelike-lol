@@ -26,13 +26,13 @@ int main(int argc, char **argv) {
         Scene scene;
 
         SocketServer server;
-        server.connectCallback = [&scene](u64 id) {
+        server.connect_callback = [&scene](u64 id) {
             scene.add_entity(id, EntityProto_EntityType_Player);
         };
-        server.receive_callback = [&scene](u64 id, std::string msg) {
+        server.receive_callback = [&scene](SocketConn &conn, std::string msg) {
             MessageProto proto;
             proto.ParseFromString(msg);
-            scene.receive(id, proto);
+            scene.receive(conn, proto);
         };
         server.disconnect_callback = [&scene](u64 id) {
             scene.find(id)->removed = true;

@@ -16,6 +16,7 @@ message MessageProto {
         F = 10;
         Stop = 11;
         ClearEnemies = 12;
+        TestDelay = 13;
     }
     
     optional Vector2Proto position = 1;

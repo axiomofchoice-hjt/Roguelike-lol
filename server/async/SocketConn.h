@@ -8,7 +8,7 @@
 class SocketConn : public std::enable_shared_from_this<SocketConn> {
    public:
     std::string recvBuf;
-    std::function<void(u64, std::string)> receive_callback;
+    std::function<void(SocketConn &, std::string)> receive_callback;
     std::function<void(u64)> disconnect_callback;
     uptr<boost::asio::ip::tcp::socket> socket;
     u64 id;

@@ -10,6 +10,8 @@
 #include "scene/Wall.h"
 #include "tools/basic.h"
 
+class SocketConn;
+
 /// 场景
 class Scene {
    public:
@@ -32,7 +34,7 @@ class Scene {
     shared<Entity> add_entity(u64 id, EntityProto::EntityType type);
     shared<Entity> find(u64 id) const;
     shared<wall::Wall> find_wall(u64 id);
-    void receive(u64 id, const MessageProto &msg);
+    void receive(SocketConn &conn, const MessageProto &msg);
     void update(float deltaTime);
 
     void print() const;

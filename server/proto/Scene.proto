@@ -59,6 +59,7 @@ message SceneProto {
     optional float attack_radius = 3;
     optional fixed64 world_seed = 4;
     optional bool working = 11;
+    optional bool test_delay = 12;
 
     optional float Acd = 5;
     optional float Qcd = 6;

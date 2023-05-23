@@ -7,6 +7,7 @@
 
 #include "Config.h"
 #include "action/comb.h"
+#include "async/SocketConn.h"
 #include "proto/Scene.pb.h"
 #include "scene/Entity.h"
 #include "scene/Wall.h"
@@ -69,7 +70,8 @@ shared<wall::Wall> Scene::find_wall(u64 id) {
 }
 
 /// 处理接收
-void Scene::receive(u64 id, const MessageProto &msg) {
+void Scene::receive(SocketConn &conn, const MessageProto &msg) {
+    u64 id = conn.id;
     shared<Entity> player = find(id);
     if (msg.type() == MessageProto_Type_Move) {
         vec2 pos = Vector::from_proto(msg.position());
@@ -129,6 +131,14 @@ void Scene::receive(u64 id, const MessageProto &msg) {
                 i->blood.now = 0;
             }
         }
+    } else if (msg.type() == MessageProto_Type_TestDelay) {
+        log_info("recv test_delay, id={}", id);
+        SceneProto proto;
+        proto.set_id(id);
+        proto.set_test_delay(true);
+        std::string message;
+        proto.SerializeToString(&message);
+        conn.send(message);
     }
 }
 
@@ -176,6 +186,7 @@ SceneProto Scene::proto() const {
     SceneProto proto;
     proto.set_world_seed(world_seed);
     proto.set_working(map->working_room != nullptr);
+    proto.set_test_delay(false);
 
     for (shared<Entity> entity : entities) {
         *proto.add_entities() = entity->proto();

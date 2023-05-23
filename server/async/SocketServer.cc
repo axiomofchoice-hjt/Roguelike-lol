@@ -6,7 +6,7 @@
 SocketServer::SocketServer() : context(nullptr) {}
 
 void SocketServer::start(boost::asio::io_context &ctx) {
-    if (!receive_callback || !connectCallback || !disconnect_callback) {
+    if (!receive_callback || !connect_callback || !disconnect_callback) {
         log_panic("socket server start fail");
     }
     context = &ctx;
@@ -35,7 +35,7 @@ void SocketServer::accept() {
                 conn->start();
                 conn_list.push_back(conn);
 
-                connectCallback(conn->id);
+                connect_callback(conn->id);
 
                 accept();
             } else {
