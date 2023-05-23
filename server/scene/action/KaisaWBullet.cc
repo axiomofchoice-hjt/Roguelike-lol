@@ -12,7 +12,7 @@ bool KaisaWBullet::run(float &deltaTime) {
             target->action.type != EntityProto_ActionType_Death &&
             geo::distance(*entity->position, *target->position) <=
                 entity->attack_radius()) {
-            target->blood.add(-10);
+            target->blood.add(-Config::damage(entity->type));
             return true;
         }
     }

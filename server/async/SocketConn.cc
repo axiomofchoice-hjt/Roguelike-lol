@@ -50,7 +50,6 @@ void SocketConn::receive() {
 }
 
 void SocketConn::send(std::string s) {
-    log_info("send length={}", s.length());
     IntSerialize::putSize(s);
     shared<std::string> s1 = std::make_shared<std::string>(std::move(s));
     sending = true;

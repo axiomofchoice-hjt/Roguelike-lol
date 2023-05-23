@@ -21,6 +21,9 @@ EntityProto_ActionType action_proto(const Entity &entity);
 /// 判断敌人
 bool is_enemy(EntityProto_EntityType type);
 
+/// 伤害
+float damage(EntityProto_EntityType type);
+
 inline float melee_attack_distance() { return 2; }
 inline float melee_attack_speed() { return 4; }
 inline float room_size() { return 30; }

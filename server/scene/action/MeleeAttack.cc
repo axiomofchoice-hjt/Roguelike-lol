@@ -20,7 +20,7 @@ bool MeleeAttack::run(float &deltatime) {
             geo::distance(*i->position, *entity->position) <=
                 Config::attack_radius(*entity)) {
             attacked.insert(i->id);
-            i->blood.add(-10);
+            i->blood.add(-Config::damage(entity->type));
         }
     }
     return do_move(*entity, to, 0.01f, deltatime, Config::melee_attack_speed());

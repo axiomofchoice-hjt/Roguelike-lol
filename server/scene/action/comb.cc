@@ -41,7 +41,7 @@ ActionList Attack(shared<Entity> entity, shared<Entity> target, Scene *scene) {
 ActionList Bullet(shared<Entity> entity, shared<Entity> target, Scene *scene) {
     ActionList action;
     action.append<action::WaitAttack>(entity, target);
-    action.append<action::Damage>(entity, target, 20);
+    action.append<action::Damage>(entity, target, Config::damage(entity->type));
     action.append<action::Destroy>(entity, scene);
     return action;
 }
@@ -52,7 +52,7 @@ ActionList KaisaQBullet(shared<Entity> entity, shared<Entity> target,
     vec2 to_raw = geo::normalize(*entity->position - *target->position);
     vec2 o = vec2(to_raw.y, -to_raw.x) * (ratio * 2.f - 1.f);
     action.append<action::KaisaQBullet>(entity, target->position, o * 15.f);
-    action.append<action::Damage>(entity, target, 2);
+    action.append<action::Damage>(entity, target, Config::damage(entity->type));
     action.append<action::Destroy>(entity, scene);
     return action;
 }

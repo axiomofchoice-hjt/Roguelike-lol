@@ -55,7 +55,7 @@ float attack_radius(const Entity &entity) {
     } else if (entity.type == EntityProto_EntityType_Bullet) {
         return 0.2;
     } else if (entity.type == EntityProto_EntityType_KaisaWBullet) {
-        return 1;
+        return 1.5;
     } else if (entity.type == EntityProto_EntityType_UrgotBullet) {
         return 0.8f;
     }
@@ -92,5 +92,21 @@ EntityProto_ActionType action_proto(const Entity &entity) {
 bool is_enemy(EntityProto_EntityType type) {
     return type == EntityProto_EntityType_Melee ||
            type == EntityProto_EntityType_Urgot;
+}
+
+float damage(EntityProto_EntityType type) {
+    if (type == EntityProto_EntityType_Bullet) {
+        return 20;
+    } else if (type == EntityProto_EntityType_KaisaQBullet) {
+        return 3.34f;
+    } else if (type == EntityProto_EntityType_KaisaWBullet) {
+        return 60;
+    } else if (type == EntityProto_EntityType_Melee) {
+        return 10;
+    } else if (type == EntityProto_EntityType_UrgotBullet) {
+        return 10;
+    }
+    log_warn("no damage find, type={}\n", type);
+    return 1;
 }
 }  // namespace Config

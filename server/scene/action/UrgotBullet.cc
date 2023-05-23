@@ -1,5 +1,6 @@
 #include "UrgotBullet.h"
 
+#include "scene/Config.h"
 #include "scene/Entity.h"
 #include "scene/Scene.h"
 
@@ -11,7 +12,7 @@ bool UrgotBullet::run(float &deltaTime) {
             target->action.type != EntityProto_ActionType_Death &&
             geo::distance(*entity->position, *target->position) <=
                 entity->attack_radius()) {
-            target->blood.add(-30);
+            target->blood.add(-Config::damage(entity->type));
             return true;
         }
     }
