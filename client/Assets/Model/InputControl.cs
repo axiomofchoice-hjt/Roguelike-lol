@@ -1,7 +1,6 @@
 using Google.Protobuf;
 using System;
 using UnityEngine;
-using static EntityProto.Types;
 
 namespace Model {
     public class InputControl {
@@ -18,10 +17,10 @@ namespace Model {
             Entity select = null;
             foreach (Entity entity in Scene.entities) { // 找最近的敌人
                 if ((Config.IsEnemy(entity.type)
-                    || entity.type == EntityType.Satchel
-                    || entity.type == EntityType.Nexus)
-                    && entity.action != ActionType.Death
-                    && entity.action != ActionType.Invisible) {
+                    || entity.type == EntityProto.Types.EntityType.Satchel
+                    || entity.type == EntityProto.Types.EntityType.Nexus)
+                    && entity.action != EntityProto.Types.ActionType.Death
+                    && entity.action != EntityProto.Types.ActionType.Invisible) {
                     if (select == null ||
                         Vector2.Distance(pos, select.position) > Vector2.Distance(pos, entity.position)) {
                         select = entity;

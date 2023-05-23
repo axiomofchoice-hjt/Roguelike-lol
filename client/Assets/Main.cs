@@ -26,6 +26,8 @@ public class Main : MonoBehaviour {
     private void Update() {
         float deltaTime = Time.deltaTime;
 
+        Tools.Remote.Update();
+
         // Before
         Model.InputControl.UpdateBefore();
 

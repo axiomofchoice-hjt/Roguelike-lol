@@ -15,6 +15,7 @@ namespace View {
             if (entity.type == EntityProto.Types.EntityType.Player ||
                 Config.IsEnemy(entity.type)) {
                 bloodBar = GameObject.Instantiate(Tools.Loader.Prefab("UI/BloodBar"), VCanvas.go.transform);
+                bloodBar.transform.SetAsFirstSibling();
             }
         }
 

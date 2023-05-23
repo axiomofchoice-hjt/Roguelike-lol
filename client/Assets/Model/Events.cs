@@ -24,6 +24,7 @@ namespace Model {
             PauseView.SetActive(pause);
             ConnectFail.SetActive(false);
             PauseButton.transform.SetAsLastSibling();
+            ConnectFail.transform.SetAsLastSibling();
         }
 
         public void Pause() {
